@@ -19,13 +19,16 @@ function bindData(articles){
     const newsCardTemplate = document.getElementById("template-news-card");
 
     cardsContainer.innerHTML ="";
-
-    articles.forEach((article) => {
-        if (!article.urlToImage) return; // we don't clone imageless article 
-        const cardClone = newsCardTemplate.content.cloneNode(true); // deep clone
-        fillDataIncard(cardClone,article);
-        cardsContainer.appendChild(cardClone);
-    });
+    try{
+        articles.forEach((article) => {
+            if (!article.urlToImage) return; // we don't clone imageless article 
+            const cardClone = newsCardTemplate.content.cloneNode(true); // deep clone
+            fillDataIncard(cardClone,article);
+            cardsContainer.appendChild(cardClone);
+        });
+    } catch(err){
+        console.log(err);
+    }
 }
 
 function fillDataIncard(cardClone,article){
